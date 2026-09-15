@@ -21,26 +21,53 @@
         <joint name="joint_5" value="0"/>
         <joint name="joint_6" value="0"/>
     </group_state>
-    <group_state name="Stretched" group="manipulator">
-        <joint name="joint_1" value="0"/>
-        <joint name="joint_2" value="1.57"/>
-        <joint name="joint_3" value="-1.57"/>
-        <joint name="joint_4" value="0"/>
-        <joint name="joint_5" value="0"/>
+    <group_state name="Pick" group="manipulator">
+        <joint name="joint_1" value="-0.855211"/>
+        <joint name="joint_2" value="1.64061"/>
+        <joint name="joint_3" value="-0.8901"/>
+        <joint name="joint_4" value="-0.0872665"/>
+        <joint name="joint_5" value="0.785398"/>
         <joint name="joint_6" value="0"/>
+    </group_state>
+    <group_state name="Place" group="manipulator">
+        <joint name="joint_1" value="0.724266"/>
+        <joint name="joint_2" value="1.2019"/>
+        <joint name="joint_3" value="-0.650428"/>
+        <joint name="joint_4" value="-0.0367264"/>
+        <joint name="joint_5" value="0.968538"/>
+        <joint name="joint_6" value="1.53713"/>
+    </group_state>
+    <group_state name="Pre-pick" group="manipulator">
+        <joint name="joint_1" value="-0.831471"/>
+        <joint name="joint_2" value="1.06827"/>
+        <joint name="joint_3" value="-0.516924"/>
+        <joint name="joint_4" value="-0.0749981"/>
+        <joint name="joint_5" value="0.985545"/>
+        <joint name="joint_6" value="0"/>
+    </group_state>
+    <group_state name="Pre-place" group="manipulator">
+        <joint name="joint_1" value="0.735267"/>
+        <joint name="joint_2" value="1.02072"/>
+        <joint name="joint_3" value="-0.96018"/>
+        <joint name="joint_4" value="-0.0310241"/>
+        <joint name="joint_5" value="1.45958"/>
+        <joint name="joint_6" value="1.53073"/>
     </group_state>
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <virtual_joint name="fixed_base" type="fixed" parent_frame="world" child_link="base_link"/>
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
-    <disable_collisions link1="base_link" link2="link_1" reason="Adjacent"/>
-    <disable_collisions link1="base_link" link2="link_2" reason="Never"/>
-    <disable_collisions link1="link_1" link2="link_2" reason="Adjacent"/>
+    <disable_collisions link1="base_link" link2="link_1" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_2" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_3" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_4" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_5" reason="User"/>
+    <disable_collisions link1="base_link" link2="link_6" reason="User"/>
+    <disable_collisions link1="link_1" link2="link_2" reason="User"/>
+    <disable_collisions link1="link_1" link2="link_3" reason="User"/>
+    <disable_collisions link1="link_1" link2="link_4" reason="User"/>
+    <disable_collisions link1="link_1" link2="link_5" reason="User"/>
     <disable_collisions link1="link_2" link2="link_3" reason="Adjacent"/>
-    <disable_collisions link1="link_2" link2="link_5" reason="Never"/>
-    <disable_collisions link1="link_2" link2="link_6" reason="Never"/>
     <disable_collisions link1="link_3" link2="link_4" reason="Adjacent"/>
-    <disable_collisions link1="link_3" link2="link_5" reason="Never"/>
-    <disable_collisions link1="link_3" link2="link_6" reason="Never"/>
     <disable_collisions link1="link_4" link2="link_5" reason="Adjacent"/>
     <disable_collisions link1="link_5" link2="link_6" reason="Adjacent"/>
 </robot>

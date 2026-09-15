@@ -5,21 +5,6 @@ moveit_setup_assistant_config:
   srdf:
     relative_path: config/abb_irb120.srdf
   package_settings:
-    author_name: Kevin
-    author_email: vargaskev2005@gmail.com
-    generated_timestamp: 1789331633
-  control_xacro:
-    command:
-      - position
-    state:
-      - position
-      - velocity
-  modified_urdf:
-    xacros:
-      - control_xacro
-  control_xacro:
-    command:
-      - position
-    state:
-      - position
-      - velocity
+    author_name: Valentina Yepes y Kevin Vargas
+    author_email: valentina.yepes@eia.edu.co
+    generated_timestamp: 1789439163
