@@ -37,5 +37,19 @@ install(
   DIRECTORY launch
   DESTINATION share/${PROJECT_NAME}
 )
+add_executable(
+  named_move
+  src/named_move.cpp
+)
 
+ament_target_dependencies(
+  named_move
+  rclcpp
+  moveit_ros_planning_interface
+)
+
+install(
+  TARGETS named_move
+  DESTINATION lib/${PROJECT_NAME}
+)
 ament_package()
