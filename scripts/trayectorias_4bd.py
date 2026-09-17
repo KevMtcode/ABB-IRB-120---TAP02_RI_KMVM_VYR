@@ -56,6 +56,35 @@ def guardar(nombre, waypoints, q):
                 q[3]
             ])
 
+def guardar_velocidades(nombre, waypoints, t, velocidad):
+
+    with open(
+        "scripts/waypoints/" + nombre + "_cartesiano.csv",
+        "w",
+        newline=""
+    ) as archivo:
+
+        writer = csv.writer(archivo)
+
+        writer.writerow([
+            "tiempo", "x", "y", "z", "velocidad"
+        ])
+
+        for punto in waypoints:
+
+            vel = np.interp(
+                punto[0],
+                t,
+                velocidad
+            )
+
+            writer.writerow([
+                punto[0],
+                punto[1],
+                punto[2],
+                punto[3],
+                vel
+            ])
 
 def comparar(tramo, sentido):
 
@@ -122,6 +151,13 @@ def comparar(tramo, sentido):
             tramo + "_" + perfil + "_" + sentido,
             waypoints,
             orientacion
+        )
+
+        guardar_velocidades(
+            tramo + "_" + perfil + "_" + sentido,
+            waypoints,
+            t,
+            velocidad
         )
 
         vel_max = max(abs(velocidad))

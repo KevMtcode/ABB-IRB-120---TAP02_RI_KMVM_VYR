@@ -360,6 +360,84 @@ int main(int argc, char** argv)
         }
     }
 
+// =====================================================
+// Guardar posiciones y velocidades articulares en CSV
+// =====================================================
+
+// Genera el nombre automaticamente a partir del CSV usado
+std::string archivo_salida = archivo;
+
+size_t posicion_extension =
+    archivo_salida.rfind(".csv");
+
+if (posicion_extension != std::string::npos)
+{
+    archivo_salida.replace(
+        posicion_extension,
+        4,
+        "_articulares.csv"
+    );
+}
+else
+{
+    archivo_salida += "_articulares.csv";
+}
+
+
+std::ofstream csv_salida(archivo_salida);
+
+if (!csv_salida.is_open())
+{
+    std::cerr
+        << "No se pudo crear el CSV"
+        << std::endl;
+}
+else
+{
+    // Encabezado
+    csv_salida
+        << "tiempo,"
+        << "q1,q2,q3,q4,q5,q6,"
+        << "qdot1,qdot2,qdot3,qdot4,qdot5,qdot6\n";
+
+
+    // Una fila por cada punto de la trayectoria
+    for (size_t i = 0; i < puntos.size(); i++)
+    {
+        double t =
+            tiempoPunto(puntos[i]);
+
+        csv_salida << t;
+
+
+        // Posiciones articulares [rad]
+        for (size_t j = 0; j < n_joints; j++)
+        {
+            csv_salida
+                << ","
+                << puntos[i].positions[j];
+        }
+
+
+        // Velocidades articulares [rad/s]
+        for (size_t j = 0; j < n_joints; j++)
+        {
+            csv_salida
+                << ","
+                << puntos[i].velocities[j];
+        }
+
+        csv_salida << "\n";
+    }
+
+
+    csv_salida.close();
+
+    std::cout
+        << "\nPosiciones y velocidades guardadas en:\n"
+        << archivo_salida
+        << std::endl;
+}
 
     // Aceleraciones
     for (auto& punto : puntos)
