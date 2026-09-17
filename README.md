@@ -3,6 +3,23 @@ Célula de ensamble simulada en ROS2 + MoveIt2 + RViz2, donde el manipulador ser
 
 _________RESUMEN DE EJECUCIÓN_____________
 
+PUNTO 1 (Ver notion Robótica: https://healthy-relish-579.notion.site/MoveIt2-Gu-a-paso-a-paso-3d5c8766b3378133a7c2d4ca1f0c7d76)
+
+PUNTO 2 
+1. Abrir MoveIt/RViz y asegurarse :
+rm -rf build/irb120_moveit_config install/irb120_moveit_config
+source /opt/ros/jazzy/setup.bash
+colcon build --packages-select irb120_moveit_config
+source install/setup.bash
+export LC_NUMERIC=C
+ros2 launch irb120_moveit_config demo.launch.py
+
+2. En otra consola ejecuta el nodo para ver la TH del HOME:
+ros2 run tf2_ros tf2_echo base_link tool0
+
+PUNTO 3
+Ejecuta los comandos del PUNTO 2 pero cambiando la posición del Robot en Rviz, asi obtienes la TH para cada una de las posiciones
+
 PUNTO 4
 
 4A – HOME → PRE-PICK
@@ -143,3 +160,13 @@ ros2 launch irb120_moveit_config demo.launch.py
 
 
 8. Animar todo: ./scripts/ciclo_completo.sh
+
+
+PUNTO 5:
+1. Vamos a extraer el jacobiano usando un nodo con el getJacobian() de Moveit:
+source install/setup.bash
+ros2 run jacobian_checker jacobian_checker
+
+
+
+NOTA: Una vez que ejecutes estos comandos, podrás ver en src/scripts/waypoints los .csv correspondientes a las velocidades y posiciones de la herramienta y a las posiciones y velocidades angulares de las articulaciones para cada uno de los puntos del perfil quintico
